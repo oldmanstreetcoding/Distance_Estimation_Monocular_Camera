@@ -1,5 +1,7 @@
 # KITTI Dataset Bounding Box Experiment
 
+2d_bound_boxes.ipynb is the  file for this experiment
+
 ## Project Overview
 This repository is an exploration of the KITTI 3D object detection dataset, focusing on the extraction and visualization of 2D bounding boxes from the provided images and labels. The KITTI dataset is a widely-used benchmark suite for autonomous driving tasks, including stereo, optical flow, visual odometry, 3D object detection, and 3D tracking. The main goal of this experiment is to display and overlay bounding boxes on sample images from the dataset using Python.
 
