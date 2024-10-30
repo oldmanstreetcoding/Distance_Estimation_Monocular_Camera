@@ -118,7 +118,7 @@ In our experiment, we achieved an accuracy of **59.17% within a 10% tolerance ra
    ```
 
 ## Acknowledgements
-We extend our gratitude to the **KITTI Vision Benchmark Suite** for providing the dataset used in this experiment. For more information about the dataset, visit the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/).
+We extend our gratitude to the **KITTI Vision Benchmark Suite** for providing the dataset used in this experiment. For more information about the dataset, visit the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/)
 
 ---
 
