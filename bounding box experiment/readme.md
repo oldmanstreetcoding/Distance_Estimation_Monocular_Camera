@@ -6,10 +6,10 @@ This repository is an exploration of the KITTI 3D object detection dataset, focu
 ## Dataset Information
 KITTI Dataset Source: The dataset used in this repository is part of the KITTI Vision Benchmark Suite, which was developed by Karlsruhe Institute of Technology and Toyota Technological Institute at Chicago. The dataset consists of left and right camera images, calibration files, and labeled ground truth data. You can download the dataset from the following links:
 
-- Left Color Images (12 GB): Download here
-- Right Color Images (12 GB): Download here (Optional for stereo use)
-- Camera Calibration Files (16 MB): Download here
-- Training Labels (5 MB): Download here
+- Left Color Images (12 GB): <a href="https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip" target="_blank">Download here</a>
+- Right Color Images (12 GB): <a href="https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_3.zip" target="_blank">Download here (Optional for stereo use)</a>
+- Camera Calibration Files (16 MB): <a href="https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip" target="_blank">Download here</a>
+- Training Labels (5 MB): <a href="https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip" target="_blank">Download here</a>
 
 In this repository, we are using a small subset of the dataset for demonstration purposes, focusing on 10 sample images.
 
