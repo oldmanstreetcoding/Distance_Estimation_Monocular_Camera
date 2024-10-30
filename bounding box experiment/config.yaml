@@ -1,0 +1,5 @@
+DataConfig:
+        image_dir: 'data/detection/training/image_2/'
+        label_dir: 'data/detection/training/label_2/'
+        calibration_dir: 'data/detection/training/calib/'
+      
