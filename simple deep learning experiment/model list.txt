@@ -1,0 +1,13 @@
+python inference.py -m model@1730434885 -w model@1730434885.weights
+
+python inference.py -m model@1730434958 -w model@1730434958.weights
+
+python inference.py -m model@1730435291 -w model@1730435291.weights
+
+python inference.py -m model@1730454248 -w model@1730454248.weights
+
+python inference.py -m model@1730454952 -w model@1730454952.weights
+
+python inference.py -m model@1730455452 -w model@1730455452.weights
+
+python inference.py -m model@1730457696 -w model@1730457696.weights
