@@ -56,3 +56,5 @@ Feel free to explore the provided scripts, modify them to suit your needs, and c
 This project uses the KITTI Vision Benchmark Suite dataset. We thank the Karlsruhe Institute of Technology and Toyota Technological Institute at Chicago for providing the dataset. More information about the dataset can be found on the KITTI Dataset website.
 
 Happy experimenting with KITTI! 🚗
+
+### Code Citation: <a href="https://medium.com/@desjoerdhaan/kitti-3d-object-detection-data-set-ef8ee6409574" target="_blank">https://medium.com/@desjoerdhaan/kitti-3d-object-detection-data-set-ef8ee6409574</a>

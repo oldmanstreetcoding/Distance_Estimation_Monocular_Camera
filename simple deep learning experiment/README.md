@@ -120,6 +120,8 @@ In our experiment, we achieved an accuracy of **59.17% within a 10% tolerance ra
 ## Acknowledgements
 We extend our gratitude to the **KITTI Vision Benchmark Suite** for providing the dataset used in this experiment. For more information about the dataset, visit the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/)
 
+### Code Citation: <a href="https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master" target="_blank">https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master</a>
+
 ---
 
 This experiment serves as an initial attempt at estimating object distances using 2D bounding box information. Further improvements and refinements can enhance the model’s accuracy and robustness. Feel free to explore, experiment, and contribute back to this project! 🚗📷
