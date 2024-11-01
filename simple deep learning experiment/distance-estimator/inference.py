@@ -52,7 +52,7 @@ def main():
     for idx, row in df_result.iterrows():
         df_result.at[idx, 'zloc_pred'] = y_pred[idx]
 
-    df_result.to_csv('data/predictions.csv', index=False)
+    df_result.to_csv('data/predictions7.csv', index=False)
 
 if __name__ == '__main__':
     main()

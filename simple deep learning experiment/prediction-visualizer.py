@@ -6,7 +6,7 @@ import cv2
 import pandas as pd
 
 # Load the prediction results
-df = pd.read_csv("distance-estimator/data/predictions.csv")
+df = pd.read_csv("distance-estimator/data/predictions7.csv")
 
 for idx, row in df.iterrows():
     if os.path.exists(os.path.join("original_data/train_annots/", row['filename'])):

@@ -93,3 +93,5 @@ ENV/
 # KITTI related
 *.pkl
 .idea/
+
+original_data/
