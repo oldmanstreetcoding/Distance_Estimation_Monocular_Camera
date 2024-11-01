@@ -38,14 +38,6 @@ This Jupyter Notebook script explores the KITTI 3D detection dataset. It display
 - Overlaying bounding boxes: It draws the bounding boxes on the corresponding images using the extracted label information. Additionally, the image is overlaid with information such as the bounding box ID.
 - Stereo camera image processing (Optional): If stereo images are provided, the script combines left and right images using weighted overlays to visualize stereo effects.
 
-### Points to Consider for Bounding Box Visualization
-When visualizing the bounding boxes, you should keep the following points in mind:
-
-- Label Accuracy: The label file provides the ground truth information for the bounding boxes. Make sure to map the bounding box coordinates precisely onto the image.
-- Object Classes: Different classes such as "Car", "Pedestrian", "Cyclist", etc., may be present. Visual distinctions using different colors or markers can help in differentiating them.
-- Handling Truncated or Occluded Objects: Labels include information about whether an object is truncated or occluded. This can help in understanding the limitations of visualizing partially visible objects.
-- Visualization Consideration: Use contrasting colors for bounding boxes and text to make sure that the annotations are clearly visible in the final images.
-
 ## Key Considerations and Challenges
 - Precision of Bounding Box Coordinates: Ensuring that the bounding boxes align precisely with the objects in the images is crucial for accuracy.
 - Handling Multiple Object Classes: The dataset contains multiple classes of objects with varying sizes. Visualizations need to consider the scale and type of each object to avoid clutter.
