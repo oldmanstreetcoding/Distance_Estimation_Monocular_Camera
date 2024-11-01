@@ -117,10 +117,10 @@ In our experiment, we achieved an accuracy of **59.17% within a 10% tolerance ra
    python prediction-visualizer.py
    ```
 
+##### Code Citation: <a href="https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master" target="_blank">https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master</a>
+
 ## Acknowledgements
 We extend our gratitude to the **KITTI Vision Benchmark Suite** for providing the dataset used in this experiment. For more information about the dataset, visit the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/)
-
-### Code Citation: <a href="https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master" target="_blank">https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master</a>
 
 ---
 
