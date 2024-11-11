@@ -1,127 +1,188 @@
 
-# Distance Estimation Using KITTI Dataset: Ground Truth Analysis
+# Monocular Distance Estimation with KITTI Dataset: A Neural Network Approach
 
 ## Purpose
-The primary goal of this experiment is to estimate the distance of objects (such as cars, pedestrians, trucks, etc.) from a camera based on the 2D bounding box coordinates detected in an image. The output is a distance measure (zloc) indicating the distance between the detected object and the camera. 
+The purpose of this experiment is to estimate the distance (zloc) of objects (such as cars, pedestrians, trucks, etc.) from a camera using a neural network model trained on 2D bounding box coordinates. The model predicts the distance between detected objects and the camera based on 2D information extracted from images.
 
 ## Overview
-We train a deep learning model that takes as input the 2D bounding box coordinates of detected objects and predicts the distance (zloc) to those objects in a scene. This task uses the KITTI Vision Benchmark Suite, which provides ground truth information about object locations in camera coordinates.
+In this project, we train a simple neural network model that takes 2D bounding box coordinates from detected objects in an image and predicts their distance from the camera (zloc). The experiment leverages the KITTI Vision Benchmark Suite, which provides ground truth 3D location information of objects, allowing us to evaluate the model's accuracy effectively.
+
+### Project Structure
+```
+distance-estimator
+├── data                    # Contains training and testing data
+├── generated_files         # Stores generated model files
+├── logs                    # Stores training logs for TensorBoard
+├── output_images           # Output visualizations
+├── original_data           # Raw KITTI dataset files
+├── results                 # Directory for storing results
+├── hyperopti.py            # Hyperparameter optimization script
+├── inference.py            # Model inference script
+├── plot_history.py         # Training history visualization script
+├── train.py                # Main training script
+├── training_continuer.py   # Script to continue interrupted training
+├── generate-csv.py         # Converts KITTI labels to CSV format
+├── generate-depth-annotations.py  # Splits data for depth estimation
+├── visualizer.py           # Visualizes bounding boxes on images
+├── prediction-visualizer.py # Visualizes model predictions
+└── README.md               # Project documentation
+```
 
 ### Input
-- Bounding box coordinates: (xmin, ymin, xmax, ymax)
+- Bounding box coordinates: `(xmin, ymin, xmax, ymax)`
 
 ### Output
-- Estimated distance to the object: (zloc)
+- Estimated distance to the object: `zloc`
 
 ## Dataset Source Information
-The dataset used for this experiment is the **KITTI Vision Benchmark Suite**, specifically the object detection subset. KITTI is a widely-used benchmark suite for autonomous driving tasks, including stereo vision, visual odometry, and 3D object detection. For this experiment, we focus on the 2D bounding boxes and corresponding ground truth data.
+The dataset used in this experiment is from the **KITTI Vision Benchmark Suite**, specifically the object detection subset. KITTI is a comprehensive benchmark for autonomous driving research. For this project, we use the 2D bounding boxes and corresponding ground truth data for distance estimation.
 
 - **Dataset source**: [KITTI Dataset](https://www.cvlibs.net/datasets/kitti/eval_object.php?obj_benchmark=2d)
-- **Files Downloaded**:
+- **Required Files**:
   - **Left color images**: [Download (12 GB)](https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_image_2.zip)
   - **Camera calibration files**: [Download (16 MB)](https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_calib.zip)
   - **Training labels**: [Download (5 MB)](https://s3.eu-central-1.amazonaws.com/avg-kitti/data_object_label_2.zip)
 
-We use a small subset of 10 example images for demonstration purposes.
+We use a small subset of images for demonstration.
 
-## Libraries Used
-- **Python**: Base scripting language
-- **OpenCV**: Image processing and visualization (`cv2`)
-- **Matplotlib**: Plotting and displaying images (`matplotlib.pyplot`)
-- **Pandas**: Data handling and manipulation (`pandas`)
-- **Tabulate**: Tabular data visualization (`tabulate`)
-- **NumPy**: Numerical operations (`numpy`)
-- **TQDM**: Progress visualization during processing (`tqdm`)
-- **TensorFlow** and **Keras**: Deep learning libraries for training and model inference
+## Libraries and Dependencies
+- **Python**: Programming language
+- **OpenCV** (`cv2`): Image processing library
+- **Matplotlib**: Data visualization library
+- **Pandas**: Data manipulation and handling
+- **NumPy**: Numerical operations
+- **TQDM**: Progress visualization
+- **TensorFlow** and **Keras**: Deep learning frameworks for model training
+- **Hyperas**: Hyperparameter optimization
 
-## Scripts Description
+Install dependencies with:
+```bash
+pip install opencv-python matplotlib pandas numpy tqdm tensorflow keras hyperas
+```
 
-### 1. **Data Preparation and Visualization**
-- **`generate-csv.py`**: Converts the raw `.txt` label files into a structured CSV file (`annotations.csv`). It extracts essential information such as bounding box coordinates, object type, and 3D location data.
-- **`generate-depth-annotations.py`**: Further processes the `annotations.csv` file to split it into `train.csv` and `test.csv` files. It filters out unnecessary data (e.g., "DontCare" objects) and organizes the dataset into a training and testing split for distance estimation.
-- **`visualizer.py`**: Used to visualize bounding boxes on sample images from the dataset. This script overlays bounding boxes along with predicted distances to help debug and verify the data visually.
+## Experiment Workflow
 
-### 2. **Training the Model**
-- **`hyperopti.py`**: Performs hyperparameter optimization using the Hyperas library. This step helps in selecting the best hyperparameters for training the model, such as learning rate, batch size, and optimizer. It supports single or multi-GPU configurations.
-- **`train.py`**: Defines the deep learning model for distance estimation and starts the training process. You can choose your own model architecture or use hyperparameter-optimized parameters.
+### Environment Setup
+1. **Install Required Libraries** as mentioned above.
+2. **Organize the Data Directory**:
+   Download and organize your KITTI dataset as follows:
+   ```
+   distance-estimator
+   ├── original_data
+   │   ├── test_images
+   │   ├── train_annots
+   │   └── train_images
+   ```
 
-### 3. **Inference and Visualization**
-- **`inference.py`**: Generates predictions on the test dataset using the trained model. The predictions (estimated distances) are stored in a CSV file for further analysis and visualization.
-- **`prediction-visualizer.py`**: Visualizes the predictions by overlaying them on the original images. It also calculates and displays the percentage of predictions within a 10% tolerance of the ground truth distances.
+### Data Preparation and Visualization
 
-## Ground Truth Information
-The ground truth in this experiment comes from the **zloc** values provided in the KITTI dataset. These values are part of the KITTI annotation files and represent the z-coordinate of an object's location in the camera's 3D coordinate system. In simpler terms, **zloc** indicates how far the object is from the camera along the Z-axis. 
+1. **Convert Labels to CSV**:
+   Use `generate-csv.py` to convert raw KITTI label files to a structured CSV file (`annotations.csv`) for easy data handling.
+   ```bash
+   python generate-csv.py --input=original_data/train_annots --output=annotations.csv
+   ```
 
-### Breakdown of Label Information:
+2. **Split Data for Training and Testing**:
+   Run `generate-depth-annotations.py` to create `train.csv` and `test.csv`, filtering out irrelevant data (e.g., "DontCare" objects).
+   ```bash
+   python generate-depth-annotations.py
+   ```
+
+3. **Visualize Bounding Boxes**:
+   Use `visualizer.py` to overlay bounding boxes on sample images to verify data accuracy.
+   ```bash
+   python visualizer.py
+   ```
+
+### Model Training and Hyperparameter Optimization
+
+1. **Hyperparameter Tuning**:
+   Run `hyperopti.py` to optimize hyperparameters such as learning rate, batch size, and optimizer. This step helps find the optimal configurations for training.
+   ```bash
+   python hyperopti.py
+   ```
+
+2. **Train the Model**:
+   Use `train.py` to define and train the neural network model on the processed dataset.
+   ```bash
+   python train.py
+   ```
+
+3. **Continue Training (if interrupted)**:
+   Use `training_continuer.py` to resume training from saved checkpoints.
+   ```bash
+   python training_continuer.py
+   ```
+
+### Model Inference and Visualization
+
+1. **Run Predictions**:
+   Use `inference.py` to generate distance predictions on the test dataset, storing the results in a CSV file.
+   ```bash
+   python inference.py --modelname=generated_files/model.json --weights=generated_files/model.weights.h5
+   ```
+
+2. **Visualize Predictions**:
+   Run `prediction-visualizer.py` to overlay predictions on images, displaying both ground truth and estimated distances.
+   ```bash
+   python prediction-visualizer.py
+   ```
+
+### Ground Truth Information
+
+Ground truth in this experiment is derived from **zloc** values in KITTI annotations, representing the z-coordinate of an object's location relative to the camera. This serves as the target variable during training.
+
 Example line from KITTI label file (`000000.txt`):
-
 ```
 Pedestrian 0.00 0 -0.20 712.40 143.00 810.73 307.92 1.89 0.48 1.20 1.84 1.47 8.41 0.01
 ```
 
-**Breakdown**:
+**Interpretation**:
 - **Object Class**: Pedestrian
-- **Bounding Box Coordinates**: (xmin, ymin, xmax, ymax) = (712.40, 143.00, 810.73, 307.92)
-- **3D Dimensions (height, width, length)**: (1.89, 0.48, 1.20)
-- **3D Location (xloc, yloc, zloc)**: (1.84, 1.47, 8.41) → **zloc = 8.41** (Distance from the camera)
-- **Rotation**: 0.01
+- **Bounding Box Coordinates**: `(xmin, ymin, xmax, ymax) = (712.40, 143.00, 810.73, 307.92)`
+- **3D Dimensions**: `(height, width, length) = (1.89, 0.48, 1.20)`
+- **3D Location**: `(xloc, yloc, zloc) = (1.84, 1.47, 8.41)` → **zloc = 8.41** (distance from the camera)
 
-### Important Points to Consider
-- **Bounding Box Accuracy**: Ensure that the bounding boxes align accurately with the objects in the image. Any misalignment could affect distance estimation performance.
-- **Ground Truth Accuracy**: The zloc values from the annotation files are the ground truth distances. Use these values to compare against model predictions and calculate error metrics.
-- **Class Handling**: Multiple object classes such as "Car", "Truck", "Pedestrian", etc., should be visualized distinctly for better interpretation of results.
+### Important Considerations
+- **Bounding Box Accuracy**: Misalignment in bounding boxes can affect the model’s accuracy in distance estimation.
+- **Ground Truth Reliability**: Use `zloc` values for evaluating model performance.
+- **Class-specific Analysis**: Visualize classes (e.g., Car, Pedestrian) distinctly to improve interpretability.
 
 ## Results and Interpretation
-### Results
-The results are displayed as images with bounding boxes drawn around detected objects. Each image also shows the ground truth and predicted distances (zloc values). 
 
-### Interpretation of Accuracy
-In our experiment, we achieved an accuracy of **59.17% within a 10% tolerance range** for the distance predictions. This means that around 59.17% of our model’s predictions were within 10% of the ground truth distances. While this accuracy might seem modest, it is an initial experiment and serves as a starting point for further refinement and improvement.
+The results are visualized with bounding boxes drawn around detected objects, showing both the ground truth and predicted distances (`zloc` values).
+
+**Accuracy**: We achieved **59.17% accuracy within a 10% tolerance range** for distance predictions, providing a solid foundation for further experimentation.
 
 ## Appendix
-### Preparing Data
-1. **Download the Dataset**: Follow the instructions in the dataset source section to download and organize the KITTI dataset.
-2. **Organize Data**: Ensure that the data is organized as follows:
-   ```
-   KITTI-distance-estimation
-   |-- original_data
-       |-- test_images
-       |-- train_annots
-       `-- train_images
-   ```
-3. **Generate Annotations CSV**:
-   ```shell
+
+### Running the Full Experiment
+
+1. **Prepare Dataset**:
+   Download and structure data as instructed in the Dataset Source section.
+2. **Generate Annotations**:
+   ```bash
    python generate-csv.py --input=original_data/train_annots --output=annotations.csv
    ```
-4. **Generate Train and Test CSV**:
-   ```shell
+3. **Split Data for Training and Testing**:
+   ```bash
    python generate-depth-annotations.py
    ```
-5. **Visualize the Dataset**: Use `visualizer.py` to visualize and inspect the dataset for any issues.
-
-### Running Training and Inference
-1. **Hyperparameter Optimization**:
-   ```shell
-   python hyperopti.py
-   ```
-2. **Train the Model**:
-   ```shell
+4. **Train the Model**:
+   ```bash
    python train.py
    ```
-3. **Run Inference**:
-   ```shell
+5. **Run Inference**:
+   ```bash
    python inference.py --modelname=generated_files/model.json --weights=generated_files/model.weights.h5
    ```
-4. **Visualize Predictions**:
-   ```shell
-   python prediction-visualizer.py
-   ```
 
-##### Code Citation: <a href="https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master" target="_blank">https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master</a>
+##### Code Reference: [KITTI Distance Estimation GitHub](https://github.com/harshilpatel312/KITTI-distance-estimation/tree/master)
 
 ## Acknowledgements
-We extend our gratitude to the **KITTI Vision Benchmark Suite** for providing the dataset used in this experiment. For more information about the dataset, visit the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/)
+
+We extend our gratitude to the **KITTI Vision Benchmark Suite** for the dataset. More information is available at the [KITTI Dataset website](http://www.cvlibs.net/datasets/kitti/).
 
 ---
 
-This experiment serves as an initial attempt at estimating object distances using 2D bounding box information. Further improvements and refinements can enhance the model’s accuracy and robustness. Feel free to explore, experiment, and contribute back to this project! 🚗📷
+This experiment is an introductory attempt at estimating object distances using 2D bounding box coordinates and simple neural network models. Further improvements could significantly enhance accuracy and robustness.

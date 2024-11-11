@@ -95,3 +95,7 @@ ENV/
 .idea/
 
 original_data/
+
+distance-estimator/data/
+distance-estimator/logs/
+distance-estimator/generated_files/
