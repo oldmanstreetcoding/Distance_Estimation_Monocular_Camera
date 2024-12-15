@@ -12,12 +12,12 @@ MonoViz is an advanced extension of the MonoRCNN framework, aimed at enhancing v
 ## Visualization
 
 - **KITTI Dataset**
-  <img src='images/KITTI_MonoViz_1.png' width=805>
-  <img src='images/KITTI_MonoViz_2.png' width=805>
+  <img src='![alt text](image.png)' width=805>
+  <img src='![alt text](image-1.png)' width=805>
 
 - **Bird’s-Eye View Projections**
-  <img src='images/KITTI_BEV_1.png' width=400>
-  <img src='images/KITTI_BEV_2.png' width=400>
+  <img src='![alt text](image-2.png)' width=400>
+  <img src='![alt text](image-3.png)' width=400>
 
 These outputs are designed to provide an integrated and user-friendly visualization experience, bridging the gap between research prototypes and real-world applications.
 
