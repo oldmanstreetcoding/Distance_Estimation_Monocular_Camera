@@ -52,38 +52,6 @@ This repository contains **three key sub-projects**, each contributing to the ov
 
 ---
 
-## Getting Started
-
-### Installation
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/<your-repo>/distance-estimation.git
-   cd distance-estimation
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-### Running the Code
-- **Bounding Box Experiment**:
-   ```bash
-   cd bounding_box_experiment
-   python experiment.py
-   ```
-- **Simple Neural Network Experiment**:
-   ```bash
-   cd simple_neural_network_experiment
-   python train.py
-   ```
-- **Final Solution with MonoViz**:
-   ```bash
-   cd final_solution_with_monoviz
-   python monoviz.py
-   ```
-
----
-
 ## Future Work
 
 1. **Enhanced Feature Extraction**:
