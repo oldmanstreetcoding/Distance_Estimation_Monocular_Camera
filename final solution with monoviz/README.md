@@ -113,24 +113,5 @@ cd projects/MonoRCNN
 ./main.py --config-file config/MonoRCNN_KITTI.yaml --num-gpus 1
 ```
 
-## Citation
-
-If you find this project useful in your research, please cite:
-
-```
-@inproceedings{MonoRCNN_ICCV21,
-    title = {Geometry-based Distance Decomposition for Monocular 3D Object Detection},
-    author = {Xuepeng Shi and Qi Ye and 
-              Xiaozhi Chen and Chuangrong Chen and 
-              Zhixiang Chen and Tae-Kyun Kim},
-    booktitle = {ICCV},
-    year = {2021},
-}
-
-@inproceedings{MonoRCNN_WACV23,
-    title = {Multivariate Probabilistic Monocular 3D Object Detection},
-    author = {Xuepeng Shi and Zhixiang Chen and Tae-Kyun Kim},
-    booktitle = {WACV},
-    year = {2023},
-}
-```
+## Acknowledgments
+We extend our gratitude to the authors of [MonoRCNN](https://github.com/Rock-100/MonoDet) for providing the foundational model used in our project.
