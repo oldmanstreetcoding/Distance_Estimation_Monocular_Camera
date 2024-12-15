@@ -1,0 +1,181 @@
+Test loss:
+0.06938488781452179
+Test MAE:
+0.1516059786081314
+  1/128 ━━━━━━━━━━━━━━━━━━━━ 16s 126ms/step                                                                                                                     
+ 23/128 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step                                                                                                                        
+ 43/128 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step                                                                                                                        
+ 64/128 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step                                                                                                                        
+ 85/128 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step                                                                                                                        
+104/128 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step                                                                                                                        
+125/128 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step                                                                                                                        
+ 95%|██████████████████████████████████████████████████████████████████████████████████▋    | 19/20 [12:01<00:34, 34.76s/trial, best loss: 0.05485745146870613]2024-11-11 19:16:45.905208: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+128/128 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step
+
+Percentage of predictions within 5% margin:
+24.76073619631902%
+100%|███████████████████████████████████████████████████████████████████████████████████████| 20/20 [12:01<00:00, 36.06s/trial, best loss: 0.05485745146870613] 
+117/128 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 0.0510 - mae: 0.13632024-11-11 19:16:46.329261: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+128/128 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 0.0513 - mae: 0.1365
+Evaluation of best performing model: [0.05485745146870613, 0.13827256858348846]
+Best hyperparameters found: {'batch_size': 1024, 'layer_1_units': 128, 'layer_2_units': 64, 'layer_3_units': 16, 'layer_3_units_1': 'three', 'optimizer': 'adam'}
+
+Test 1:
+Percentage of predictions within 5% margin: 42.331288343558285 %
+
+Test 2:
+Test Loss: 0.07888652384281158
+Test MAE: 0.13755130767822266
+127/127 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step
+D:\Study\4. Fall24\1. Capstone\3. Research\Github\Distance_Estimation_Monocular_Camera\simple deep learning experiment\distance-estimator\train.py:77: RuntimeWarning: divide by zero encountered in divide
+  within_margin = np.abs((y_pred - y_true) / y_true) <= margin
+Percentage of predictions within 5% margin: 45.16926118112182 %
+
+Test 3:
+Best hyperparameters found: {'batch_size': 1024, 'layer_1_units': 128, 'layer_2_units': 64, 'layer_3_units': 16, 'layer_3_units_1': 'three', 'optimizer': 'adam'}
+
+python inference.py --modelname=model@1731413722 --weights=model@1731413722.weights
+
+===============================
+
+New Neuron: object class
+
+Percentage of predictions within 5% margin:
+31.68894289185905%
+100%|████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 20/20 [10:56<00:00, 32.83s/trial, best loss: 0.02013150043785572]
+119/129 ━━━━━━━━━━━━━━━━━━━━ 0s 909us/step - loss: 0.0179 - mae: 0.08902024-11-15 09:46:14.985935: W tensorflow/core/framework/local_rendezvous.cc:404] Local rendezvous is aborting with status: OUT_OF_RANGE: End of sequence
+         [[{{node MultiDeviceIteratorGetNextFromShard}}]]
+129/129 ━━━━━━━━━━━━━━━━━━━━ 0s 844us/step - loss: 0.0181 - mae: 0.0891
+Evaluation of best performing model: [0.02013150043785572, 0.09103313088417053]
+Best hyperparameters found: {'batch_size': 1024, 'layer_1_units': 128, 'layer_2_units': 64, 'layer_3_units': 16, 'layer_3_units_1': 'three', 'optimizer': 'adam'}
+Train: Percentage of predictions within 5% margin: 52.80680437424058 %
+
+python inference2.py --modelname=model@1731683429 --weights=model@1731683429.weights
+
+==
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731684696 within 5% margin: 53.00121506682868 %
+
+layer_1_units = 64
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731684873 within 5% margin: 50.546780072904006 %
+
+layer_1_units = 32
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731684952 within 5% margin: 50.255164034021874 %
+
+layer_1_units = 256
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685022 within 5% margin: 51.22721749696233 %
+
+layer_1_units = 128
+    layer_2_units = 32
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685106 within 5% margin: 51.08140947752127 %
+
+layer_1_units = 128
+    layer_2_units = 16
+    layer_3_units = 16
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685155 within 5% margin: 50.81409477521264 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 32
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685217 within 5% margin: 52.41798298906439 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 64
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685268 within 5% margin: 45.6865127582017 %
+
+layer_1_units = 128
+    layer_2_units = 64
+
+    batch_size = 1024
+    optimizer = RMSprop()
+Percentage of predictions model@1731685339 within 5% margin: 51.68894289185906 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 512
+    optimizer = RMSprop()
+Percentage of predictions model@1731685427 within 5% margin: 53.85176184690158 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 2048
+    optimizer = RMSprop()
+Percentage of predictions model@1731685504 within 5% margin: 51.56743620899149 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 256
+    optimizer = RMSprop()
+Percentage of predictions model@1731685562 within 5% margin: 54.58080194410692 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 128
+    optimizer = RMSprop()
+Percentage of predictions model@1731685664 within 5% margin: 55.28554070473876 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 64
+    optimizer = RMSprop()
+Percentage of predictions model@1731685778 within 5% margin: 56.76792223572297 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 32
+    optimizer = RMSprop()
+Percentage of predictions model@1731686011 within 5% margin: 57.837181044957475 %
+
+layer_1_units = 128
+    layer_2_units = 64
+    layer_3_units = 16
+    batch_size = 16
+    optimizer = RMSprop()
+Percentage of predictions model@1731686402 within 5% margin: 57.49696233292831 %
+
+
+==
+ {'layers': 3, 'activation': 'relu', 'dropout_rate': 0.2, 'l2_lambda': 0.01, 'use_batch_norm': True, 'optimizer': 'adam', 'learning_rate': 0.001, 'batch_size': 512, 'epochs': 200},
+5% Margin Accuracy: 50.230862697448366%
+Results for Experiment 1:
+Test Loss: 0.023980332538485527, Test MAE: 0.0946107879281044, 5% Margin Accuracy: 50.230862697448366%
+
+{'layers': 3, 'activation': 'leaky_relu', 'dropout_rate': 0.3, 'l2_lambda': 0.01, 'use_batch_norm': False, 'optimizer': 'adam', 'learning_rate': 0.0005, 'batch_size': 1024, 'epochs': 300},
+5% Margin Accuracy: 42.64884568651276%
+Results for Experiment 2:
+Test Loss: 0.06974005699157715, Test MAE: 0.1198783740401268, 5% Margin Accuracy: 42.64884568651276%
