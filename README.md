@@ -1,4 +1,4 @@
-# Monoviz: Distance Estimation Using Geometry-Based Distance Decomposition for Monocular 3D Object Detection"
+# Monoviz: Distance Estimation Using Geometry-Based Distance Decomposition for Monocular 3D Object Detection
 
 ## Overview
 
