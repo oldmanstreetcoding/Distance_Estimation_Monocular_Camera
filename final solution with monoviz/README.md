@@ -64,7 +64,73 @@ MonoViz builds upon MonoRCNN, and the requirements are similar:
 ### Dataset Preparation
 MonoViz uses the KITTI dataset. Detailed instructions for preparing the dataset are available [here](projects/KITTI/README.md).
 
+## Installation
+
+- **Python**: 3.6
+- **PyTorch**: 1.5.0
+- **Detectron2**: 0.1.3
+
+> Note: Please use the customized version of Detectron2 included in this project. Modifications have been made to `build.py`, `rpn.py`, and `roi_heads.py` to ignore fully occluded objects during training.
+
+## Dataset Preparation
+
+### KITTI Dataset
+
+Download and organize the dataset as follows:
+
+```
+├── projects
+│   ├── MonoRCNN
+│   │   ├── output
+│   │   │   ├── model
+│   │   │   ├── log.txt
+│   │   │   ├── ...
+```
+
+### Waymo Dataset
+
+Follow similar steps to organize the Waymo dataset if applicable.
+
+## Running the Code
+
+### Testing
+
+Run the following commands to evaluate the model:
+
+```
+cd projects/MonoRCNN
+./main.py --config-file config/MonoRCNN_KITTI.yaml --num-gpus 1 --resume --eval-only
+```
+
+To visualize the 3D object detection results, set `VISUALIZE` to `True`. The results will be saved in `output/evaluation/test/visualization`.
+
 ### Training
-```bash
-cd projects/MonoViz
-./main.py --config-file config/MonoViz_KITTI.yaml --num-gpus 1
+
+Use the following command to train the model:
+
+```
+cd projects/MonoRCNN
+./main.py --config-file config/MonoRCNN_KITTI.yaml --num-gpus 1
+```
+
+## Citation
+
+If you find this project useful in your research, please cite:
+
+```
+@inproceedings{MonoRCNN_ICCV21,
+    title = {Geometry-based Distance Decomposition for Monocular 3D Object Detection},
+    author = {Xuepeng Shi and Qi Ye and 
+              Xiaozhi Chen and Chuangrong Chen and 
+              Zhixiang Chen and Tae-Kyun Kim},
+    booktitle = {ICCV},
+    year = {2021},
+}
+
+@inproceedings{MonoRCNN_WACV23,
+    title = {Multivariate Probabilistic Monocular 3D Object Detection},
+    author = {Xuepeng Shi and Zhixiang Chen and Tae-Kyun Kim},
+    booktitle = {WACV},
+    year = {2023},
+}
+```
